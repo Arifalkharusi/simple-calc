@@ -24,23 +24,23 @@ const Calculator = () => {
     "+",
   ];
 
-  const numberHandler = (e) => {
+  const numberHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     const numArr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
 
-    const isNumber = numArr.includes(e.target.innerHTML);
+    const isNumber = numArr.includes(e.currentTarget.innerHTML);
 
-    if (e.target.innerHTML === ".") {
+    if (e.currentTarget.innerHTML === ".") {
       if (num.includes(".")) return;
     }
 
-    isNumber && setNum([...num, e.target.innerHTML]);
+    isNumber && setNum([...num, e.currentTarget.innerHTML]);
 
-    if (e.target.innerHTML !== "=" && !isNumber) {
-      setOperator(e.target.innerHTML);
+    if (e.currentTarget.innerHTML !== "=" && !isNumber) {
+      setOperator(e.currentTarget.innerHTML);
       setFirstNumber(+num.join(""));
       setNum([]);
     }
-    if (e.target.innerHTML === "=") {
+    if (e.currentTarget.innerHTML === "=") {
       if (operator === "+") {
         setNum([String(firstNumber + +num.join(""))]);
       } else if (operator === "-") {
